@@ -6,31 +6,47 @@ import EmailForm from "@/components/EmailForm/EmailForm";
 import data from "@/lib/data";
 import { Download } from "lucide-react";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
+import { TextHoverEffect } from "@/components/ui/text-hover-effect";
+import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 
 const LandingPage = () => {
   const [passLink, setPassLink] = useState(null);
   const [error, setError] = useState("");
+  const [showEmailForm, setShowEmailForm] = useState(true);
+  const [showMessage, setShowMessage] = useState(false);
+  const [userName, setUserName] = useState(""); // State for the user's first name
 
   const handleDownload = (email) => {
     const student = data.find((entry) => entry.email === email);
     if (student) {
       setPassLink(student.pass);
       setError("");
+      setUserName(student.name.split(" ")[0]); // Get the first name
+      setShowEmailForm(false); // Hide the email form
+      setShowMessage(true); // Show the message
     } else {
       setError("Email not registered. Please check and try again.");
       setPassLink(null);
     }
   };
 
+  const words = [
+    { text: "MLSA" },
+    { text: "ICOER" },
+    { text: "Presents" },
+    { text: "UI/UX" },
+    { text: "Bootcamp.", className: "text-blue-500 dark:text-blue-500" },
+  ];
+
   return (
-    <div className="min-h-screen ">
-      <BackgroundBeamsWithCollision>
-        {/* <div className="min-h-screen bg-gradient-to-br from-purple-400 via-pink-500 to-red-500 flex items-center justify-center p-4"> */}
+    <div className="md:min-h-screen max-lg:h-screen overflow-hidden">
+      <BackgroundBeamsWithCollision className='max-lg:flex-col'>
+        <TypewriterEffectSmooth words={words} />
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="bg-white rounded-lg shadow-2xl p-8 max-w-md w-full relative overflow-hidden z-10" // Set z-10 here
+          className="bg-white rounded-lg shadow-2xl p-8 max-w-md w-full relative overflow-hidden z-10"
         >
           <motion.div
             className="absolute top-0 right-0 w-40 h-40 bg-yellow-300 rounded-full -mr-20 -mt-20"
@@ -45,9 +61,10 @@ const LandingPage = () => {
             }}
           />
           <h1 className="text-3xl font-bold mb-6 text-gray-800 relative z-10">
-            UI/UX Bootcamp Pass
+            Bootcamp Pass
           </h1>
-          <EmailForm onDownload={handleDownload} />
+
+          {showEmailForm && <EmailForm onDownload={handleDownload} />}
           {error && (
             <motion.p
               initial={{ opacity: 0 }}
@@ -56,6 +73,24 @@ const LandingPage = () => {
             >
               {error}
             </motion.p>
+          )}
+          {showMessage && userName && (
+            <motion.div
+              className="mt-6 text-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <p className="text-lg">Hi <span className="font-bold">{userName},</span> meet you on Microsoft Teams at 10 AM today!</p>
+              <a
+                href="https://teams.microsoft.com/dl/launcher/launcher.html?url=%2F_%23%2Fl%2Fmeetup-join%2F19%3Ameeting_MWE1MjQ4YzYtMmM1My00MzVjLWI1MDQtZGZiNGRhYTE3Njg1%40thread.v2%2F0%3Fcontext%3D%257b%2522Tid%2522%253a%252284c31ca0-ac3b-4eae-ad11-519d80233e6f%2522%252c%2522Oid%2522%253a%252221d07486-04e1-4e93-8c64-528a4dde8a47%2522%257d%26anon%3Dtrue&type=meetup-join&deeplinkId=7244d69d-50f7-4a00-a95a-5b3e1bc1e98d&directDl=true&msLaunch=true&enableMobilePage=true&suppressPrompt=true" // 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors duration-200"
+              >
+                Join Meeting
+              </a>
+            </motion.div>
           )}
           {passLink && (
             <div className="flex justify-center">
@@ -81,7 +116,7 @@ const LandingPage = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
-            style={{ zIndex: -1 }} // Set zIndex to -1 here
+            style={{ zIndex: -1 }}
           >
             <path
               fill="currentColor"
@@ -91,8 +126,8 @@ const LandingPage = () => {
           </motion.svg>
         </motion.div>
       </BackgroundBeamsWithCollision>
+      <TextHoverEffect text="MLSA" />
     </div>
-    // </div >
   );
 };
 

@@ -1,5 +1,7 @@
 const data = [
   { name: "Swapnil Naganath Hingane", email: "swapnilhingane9290@gmail.com", pass: "swapnil hingane.jpg" },
+  { name: "TestName", email: "test@gmail.com", pass: "Om.png" },
+  { name: "Om Nandurkar", email: "nandurkarom172@gmail.com", pass: "Om.png" },
   { name: "Shweta Ramesh Konale", email: "shwetakonale34@gmail.com", pass: "shweta konale.jpg" },
   { name: "Sunny Kumar", email: "kumarsunny1246@gmail.com", pass: "sunny kumar.jpg" },
   { name: "Amit Dattatray Kumbhar", email: "amitkumbhar9800@gmail.com", pass: "amit kumbhar.jpg" },

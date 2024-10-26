@@ -6,6 +6,12 @@ const Home = () => {
     <div>
       <LandingPage />
 
+      <div className='fixed bottom-1 w-full'>
+
+        <h2 className='text-center text-xs font-semibold opacity-45'>Designed & Developed by MLSA Development Team</h2>
+      </div>
+
+
     </div>
   )
 }
