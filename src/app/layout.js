@@ -14,7 +14,7 @@ const geistMono = localFont({
 
 export const metadata = {
   title: "MLSA ICOER",
-  description: "Developed & Designed by Om Nandurkar",
+  description: "Developed & Designed by MLSA Development Team",
 };
 
 export default function RootLayout({ children }) {
