@@ -22,7 +22,7 @@ const EmailForm = ({ onDownload }) => {
         setAnimating(true);
         if (email) {
             onDownload(email);
-            setEmail(""); // Clear input after submission
+            setEmail(""); 
             setAnimating(false);
         }
     };

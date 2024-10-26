@@ -14,17 +14,16 @@ const LandingPage = () => {
   const [error, setError] = useState("");
   const [showEmailForm, setShowEmailForm] = useState(true);
   const [showMessage, setShowMessage] = useState(false);
-  const [userName, setUserName] = useState(""); // State for the user's first name
+  const [userName, setUserName] = useState(""); 
 
   const handleDownload = (email) => {
     const student = data.find((entry) => entry.email === email);
     if (student) {
       setPassLink(student.pass);
       setError("");
-      setUserName(student.name.split(" ")[0]); // Get the first name
-      setShowEmailForm(false); // Hide the email form
-      setShowMessage(true); // Show the message
-    } else {
+      setUserName(student.name.split(" ")[0]); 
+      setShowEmailForm(false); 
+      setShowMessage(true); 
       setError("Email not registered. Please check and try again.");
       setPassLink(null);
     }
@@ -81,7 +80,7 @@ const LandingPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
             >
-              <p className="text-lg">Hi <span className="font-bold">{userName},</span> meet you on Microsoft Teams at 10 AM today!</p>
+              <p className="text-lg">Hi <span className="font-bold">{userName},</span> meet you on Microsoft Teams at 10 AM on 27 Oct!</p>
               <a
                 href="https://teams.microsoft.com/dl/launcher/launcher.html?url=%2F_%23%2Fl%2Fmeetup-join%2F19%3Ameeting_MWE1MjQ4YzYtMmM1My00MzVjLWI1MDQtZGZiNGRhYTE3Njg1%40thread.v2%2F0%3Fcontext%3D%257b%2522Tid%2522%253a%252284c31ca0-ac3b-4eae-ad11-519d80233e6f%2522%252c%2522Oid%2522%253a%252221d07486-04e1-4e93-8c64-528a4dde8a47%2522%257d%26anon%3Dtrue&type=meetup-join&deeplinkId=7244d69d-50f7-4a00-a95a-5b3e1bc1e98d&directDl=true&msLaunch=true&enableMobilePage=true&suppressPrompt=true" // 
                 target="_blank"
