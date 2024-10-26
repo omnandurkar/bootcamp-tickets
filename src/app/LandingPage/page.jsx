@@ -14,16 +14,18 @@ const LandingPage = () => {
   const [error, setError] = useState("");
   const [showEmailForm, setShowEmailForm] = useState(true);
   const [showMessage, setShowMessage] = useState(false);
-  const [userName, setUserName] = useState(""); 
+  const [userName, setUserName] = useState("");
 
   const handleDownload = (email) => {
     const student = data.find((entry) => entry.email === email);
     if (student) {
       setPassLink(student.pass);
       setError("");
-      setUserName(student.name.split(" ")[0]); 
-      setShowEmailForm(false); 
-      setShowMessage(true); 
+      setUserName(student.name.split(" ")[0]);
+      setShowEmailForm(false);
+      setShowMessage(true);
+
+    } else {
       setError("Email not registered. Please check and try again.");
       setPassLink(null);
     }
